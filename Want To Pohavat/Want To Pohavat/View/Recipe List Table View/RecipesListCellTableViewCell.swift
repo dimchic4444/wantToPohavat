@@ -16,6 +16,9 @@ class RecipesListCellTableViewCell: UITableViewCell {
     let timeLabel = UILabel()
     let portionsLabel = UILabel()
     
+//    var widthScreenFromRecipeList: CGFloat? //Костыль. contentView.frame.width возращает ширину экрана для iphone 5s всегда. данная переменная получает ширину экрана из запускающей ее вьюшки
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         arrangeElementOnCell()
@@ -45,7 +48,7 @@ class RecipesListCellTableViewCell: UITableViewCell {
 //        portionsLabel.translatesAutoresizingMaskIntoConstraints = false
         portionsLabel.font = UIFont.systemFont(ofSize: 12.0)
         portionsLabel.textAlignment = .right
-        
+//        self.widthScreenFromRecipeList = widthFromParent
         
 
 
@@ -72,6 +75,7 @@ class RecipesListCellTableViewCell: UITableViewCell {
         ccalsLabel.frame = CGRect(x: 5, y: 170, width: contentView.frame.width/3 - 20, height: 20)
         timeLabel.frame = CGRect(x: contentView.frame.width/3 - 10, y: 170, width: contentView.frame.width/3 - 20, height: 20)
         portionsLabel.frame = CGRect(x: contentView.frame.width/3*2 + 15, y: 170, width: contentView.frame.width/3 - 20, height: 20)
+        
     }
     
     override func updateConstraints() {

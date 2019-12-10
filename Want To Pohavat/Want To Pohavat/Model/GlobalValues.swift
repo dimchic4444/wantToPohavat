@@ -28,3 +28,7 @@ var fetchedResultsControllerImage: NSFetchedResultsController<MOImage> = {
     let controller = CoreDataManager.shared.getFetchedResultsControllerImage()
     return controller
 }()
+var fetchedResultsControllerDataBase: NSFetchedResultsController<MODataBase> = {
+    let controller = CoreDataManager.shared.getFetchedResultsControllerDataBase()
+    return controller
+}()

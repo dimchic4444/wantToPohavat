@@ -6,11 +6,10 @@
 //  Copyright © 2019 Дмитрий Гришин. All rights reserved.
 //
 
-
 import Foundation
 import CoreData
 
-@objc(MOImage)
+@objc(MODataBase)
 final class MODataBase: NSManagedObject {
     
     @NSManaged var version: String

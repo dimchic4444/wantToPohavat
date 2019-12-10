@@ -33,6 +33,19 @@ extension CoreDataManager {
                 }
             }
     }
+    public func saveDataBase(version: String, codableData: Data) {
+        stack.persistentContainer.performBackgroundTask { (context) in
+            let dataBaseObject = MODataBase(context: context)
+            dataBaseObject.codableData = codableData
+            dataBaseObject.version = version
+            do {
+                try context.save()
+                print("\(dataBaseObject.version) save by core data")
+            } catch {
+                print("DataBase save failed: \(error)")
+            }
+        }
+    }
     
     public func getFetchedResultsControllerImage() -> NSFetchedResultsController<MOImage> {
         let context = stack.persistentContainer.viewContext
@@ -49,25 +62,35 @@ extension CoreDataManager {
         }
         return controller
     }
-//    public func getFetchedResultsControllerDataBase() -> NSFetchedResultsController<MODataBase> {
-//        let context = stack.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<MODataBase>(entityName: "DataBase")
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "version", ascending: true)]
-//        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-//                                                    managedObjectContext: context,
-//                                                    sectionNameKeyPath: nil,
-//                                                    cacheName: nil)
-//        do {
-//            try controller.performFetch()
-//        } catch {
-//            fatalError("Failed to fetch entities: \(error)")
-//        }
-//        return controller
-//    }
+    public func getFetchedResultsControllerDataBase() -> NSFetchedResultsController<MODataBase> {
+        let context = stack.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<MODataBase>(entityName: "DataBase")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "version", ascending: true)]
+        let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                    managedObjectContext: context,
+                                                    sectionNameKeyPath: nil,
+                                                    cacheName: nil)
+        do {
+            try controller.performFetch()
+        } catch {
+            fatalError("Failed to fetch entities: \(error)")
+        }
+        return controller
+    }
     public func deleteImagesFromCoreData () {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Image")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
+        do {
+            try stack.persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: stack.persistentContainer.viewContext)
+        } catch let error as NSError {
+            debugPrint(error)
+        }
+    }
+    public func deleteDataBaseFromCoreData () {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DataBase")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
         do {
             try stack.persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: stack.persistentContainer.viewContext)
         } catch let error as NSError {

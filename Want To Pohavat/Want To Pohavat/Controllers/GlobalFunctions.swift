@@ -10,22 +10,56 @@ import Foundation
 import UIKit
 class GlobalFunctions {
     static func loadListOfRecipes() -> Bool { //Инициализирует список всех рецептов в приложении
-        if (checkVersionOfDataBase()) {
-            print("Версия проверена")
-            //Делаем действия в случае если база данных есть на устройстве
-            getAllImagesFromCoreData()
-            return true
-        } else {
-            //Делаем действия как будто базы данных на устройстве нет или она устарела
-            if let codableData = downloadDataBase() {
-                if (parseDataBase(codableData: codableData)) {
-                    //Выполняем действия, в случае когда база данных только что скачана и парсинг прошел успешно
-                    removeAllInformationFromCoreData()
-                    downloadAllImagesFromRecipesAndPushToCoreDataAndAddToLocaleStore() //Скачиваем все картинки и кидаем в Core Data и заполняем локальный массив
+        let webVersionOfDataBase = checkVersionOfDataBase()
+        let localVersionOfDataBase = checkVersionOfLocalDataBase()
+        if ((webVersionOfDataBase == -1) && (localVersionOfDataBase == -1)) { return false}
+        if ((webVersionOfDataBase == localVersionOfDataBase) || ((webVersionOfDataBase == -1) && (localVersionOfDataBase != -1))) {
+            //                на устройстве хранится актуальная версия базы данных, либо интернет недоступен, а на устройстве имеется база
+            if let localJSONData = getDataBaseJSONFromCoreData() {
+                if (parseDataBase(codableData: localJSONData)) {
+                    getAllImagesFromCoreData()
+                    print("База на устройстве актуальна")
                     return true
+                }
+            }
+        } else {
+            if ((webVersionOfDataBase < localVersionOfDataBase) || localVersionOfDataBase == -1) {
+                //                    на устройстве хранится устаревшая версия базы данных, либо отсутствует
+                if webVersionOfDataBase != -1 {
+                    
+                    if let codableData = downloadDataBase() {
+                        if (parseDataBase(codableData: codableData)) {
+                            //Выполняем действия, в случае когда база данных только что скачана и парсинг прошел успешно
+                            removeAllInformationFromCoreData()
+                            downloadAllImagesFromRecipesAndPushToCoreDataAndAddToLocaleStore() //Скачиваем все картинки и кидаем в Core Data и заполняем локальный массив
+                            pushDataBaseToCoreData(ver: "\(webVersionOfDataBase)", codableData: codableData)
+                            print("База на устройстве была скачана версия \(codableData)")
+                            return true
+                        } else {return false}
+                    } else {return false}
                 } else {return false}
-            } else {return false}
+            }
         }
+        return false
+        
+        
+        
+        
+//        if (checkVersionOfDataBase()) {
+//            print("Версия проверена")
+//            //Делаем действия в случае если база данных есть на устройстве
+//            return true
+//        } else {
+//            //Делаем действия как будто базы данных на устройстве нет или она устарела
+//            if let codableData = downloadDataBase() {
+//                if (parseDataBase(codableData: codableData)) {
+//                    //Выполняем действия, в случае когда база данных только что скачана и парсинг прошел успешно
+//                    removeAllInformationFromCoreData()
+//                    downloadAllImagesFromRecipesAndPushToCoreDataAndAddToLocaleStore() //Скачиваем все картинки и кидаем в Core Data и заполняем локальный массив
+//                    return true
+//                } else {return false}
+//            } else {return false}
+//        }
 
     }
     static func downloadDataBase() -> Data? {
@@ -54,18 +88,26 @@ class GlobalFunctions {
         }
         return returnImage
     }
-    static private func checkVersionOfDataBase() -> Bool {// Функция проверяет версию базы данных на сервере
-        if let data = try? Data(contentsOf: URL(string: versionLink)!) {
+    static private func checkVersionOfDataBase() -> Int {// Функция проверяет версию базы данных на сервере
+//        if let data = try? Data(contentsOf: URL(string: versionLink)!) {
+//            if let stringVersion = String(data: data, encoding: .utf8) {
+//                if let version = Int(stringVersion) {
+//                    return version
+//                }
+//            }
+//        }
+        do {
+            let data = try Data(contentsOf: URL(string: versionLink)!)
             if let stringVersion = String(data: data, encoding: .utf8) {
                 if let version = Int(stringVersion) {
-                    return false
-                    //Сравниваем версию с userDefaults
-                    //Если на устройстве загружена база и она актуально возвращаем true
-                    //Если на устройстве отсутсвует база или ее версия устарела - false
+                    return version
                 }
             }
+        } catch {
+            print("Ошика проверки версии интернета ")
+            return -1
         }
-        return false
+        return -1
     }
     static private func parseDataBase(codableData: Data) -> Bool { //Функция получает decodable data и парсит JSON, если получилось распарсить - true, иначе false
         if let arrayOfRecipesNew: RecipeDTOResponse = try? JSONDecoder().decode(RecipeDTOResponse.self, from: codableData) {
@@ -154,10 +196,37 @@ class GlobalFunctions {
     }
     static func removeAllInformationFromCoreData() {//Функция удаляет базу данных и все картинки хранящиеся на устройстве
         CoreDataManager.shared.deleteImagesFromCoreData()
+        CoreDataManager.shared.deleteDataBaseFromCoreData()
     }
-//    static func getDataBaseJSONFromCoreData() -> Data? {
-//
-//    }
+    static func pushDataBaseToCoreData(ver: String, codableData: Data) {//Функция записывает версию и JSON базы данных в Core Data
+        CoreDataManager.shared.saveDataBase(version: ver, codableData: codableData)
+    }
+    static func getDataBaseJSONFromCoreData() -> Data? {//Функция вернет JSON если он есть и Nil если базы нет в Core Data
+        if let fetchedResults = fetchedResultsControllerDataBase.fetchedObjects {
+            print(fetchedResults[0].codableData)
+            if fetchedResults.count > 0 {
+                return fetchedResults[0].codableData
+            } else {return nil }
+        }else {
+            return nil
+        }
+    }
+    static func checkVersionOfLocalDataBase() -> Int {//Функция возвращает версию базы данных хранящейся в Core Data, если ее нет вернет -1
+        if let fetchedResults = fetchedResultsControllerDataBase.fetchedObjects {
+            if fetchedResults.count > 0 {
+                if let version = Int(fetchedResults[0].version) {
+                    print("Версия базы данных на устройстве - \(version)")
+                    return version
+                } else {
+                    return -1
+                }
+            } else {
+                print("На устройстве отсутсвует база данных")
+                return -1}
+        }else {
+            return -1
+        }
+    }
 
     
 }

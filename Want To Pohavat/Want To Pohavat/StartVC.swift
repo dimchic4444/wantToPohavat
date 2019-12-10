@@ -134,6 +134,7 @@ class StartVC: UIViewController {
             let tabBar = UITabBarController()
             tabBar.viewControllers = [navVCForAllRecipeList, navVCForChooseIngridients]
             tabBar.modalPresentationStyle = .fullScreen
+            tabBar.modalTransitionStyle = .crossDissolve
             myGroup.leave()
             myGroup.notify(queue: DispatchQueue.main) {
                 UIView.animate(withDuration: 1, animations: {
@@ -145,7 +146,14 @@ class StartVC: UIViewController {
                 }
             }
         } else {
-            //Здесь надо вывести сообщение об ошибке загрузки 
+            //Здесь надо вывести сообщение об ошибке загрузки
+            print("Не удалось запустить приложение")
+            let alertController = UIAlertController(title: "Внимание", message: "Вероятно, отсутсвует подключение к интернету", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "ОК", style: .cancel) { (alert) in
+                
+            }
+            alertController.addAction(alertAction)
+            present(alertController, animated: true)
         }
         
     }
