@@ -18,7 +18,11 @@
 		E3924305239A5500001B851D /* RecipesListCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3924304239A5500001B851D /* RecipesListCellTableViewCell.swift */; };
 		E3924307239A5B60001B851D /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3924306239A5B60001B851D /* RecipesList.swift */; };
 		E3924309239C8C40001B851D /* Show Recipe VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3924308239C8C40001B851D /* Show Recipe VC.swift */; };
-		E3924311239D7A83001B851D /* Ingridients TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3924310239D7A83001B851D /* Ingridients TableView.swift */; };
+		E3924313239E756E001B851D /* Different IngridientsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3924312239E756E001B851D /* Different IngridientsVC.swift */; };
+		E3924316239ED608001B851D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3924315239ED608001B851D /* CoreDataStack.swift */; };
+		E3924318239ED643001B851D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3924317239ED643001B851D /* CoreDataManager.swift */; };
+		E392431A239ED673001B851D /* MOImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3924319239ED673001B851D /* MOImage.swift */; };
+		E392431C239F23EC001B851D /* ImageStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = E392431B239F23EC001B851D /* ImageStructure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +39,11 @@
 		E3924304239A5500001B851D /* RecipesListCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListCellTableViewCell.swift; sourceTree = "<group>"; };
 		E3924306239A5B60001B851D /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipesList.swift; path = ../../../RecipesList.swift; sourceTree = "<group>"; };
 		E3924308239C8C40001B851D /* Show Recipe VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Show Recipe VC.swift"; sourceTree = "<group>"; };
-		E3924310239D7A83001B851D /* Ingridients TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingridients TableView.swift"; sourceTree = "<group>"; };
+		E3924312239E756E001B851D /* Different IngridientsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Different IngridientsVC.swift"; sourceTree = "<group>"; };
+		E3924315239ED608001B851D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		E3924317239ED643001B851D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E3924319239ED673001B851D /* MOImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOImage.swift; sourceTree = "<group>"; };
+		E392431B239F23EC001B851D /* ImageStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStructure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,7 @@
 		E3924259238C75E0001B851D /* Want To Pohavat */ = {
 			isa = PBXGroup;
 			children = (
+				E3924314239ED5A0001B851D /* Core Data */,
 				E3924300239A483C001B851D /* View */,
 				E39242EA2398C474001B851D /* Controllers */,
 				E39242E523987B18001B851D /* Model */,
@@ -86,6 +95,7 @@
 			children = (
 				E39242E623987B55001B851D /* Recipe.swift */,
 				E39242E82398A563001B851D /* GlobalValues.swift */,
+				E392431B239F23EC001B851D /* ImageStructure.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -103,6 +113,7 @@
 			children = (
 				E392430E239CB648001B851D /* Show Recipe View Controller */,
 				E3924303239A54C2001B851D /* Recipe List Table View */,
+				E3924312239E756E001B851D /* Different IngridientsVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,18 +130,19 @@
 		E392430E239CB648001B851D /* Show Recipe View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E392430F239D79F2001B851D /* Ingridients Table View */,
 				E3924308239C8C40001B851D /* Show Recipe VC.swift */,
 			);
 			path = "Show Recipe View Controller";
 			sourceTree = "<group>";
 		};
-		E392430F239D79F2001B851D /* Ingridients Table View */ = {
+		E3924314239ED5A0001B851D /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				E3924310239D7A83001B851D /* Ingridients TableView.swift */,
+				E3924315239ED608001B851D /* CoreDataStack.swift */,
+				E3924317239ED643001B851D /* CoreDataManager.swift */,
+				E3924319239ED673001B851D /* MOImage.swift */,
 			);
-			path = "Ingridients Table View";
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,15 +216,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E392425D238C75E1001B851D /* StartVC.swift in Sources */,
-				E3924311239D7A83001B851D /* Ingridients TableView.swift in Sources */,
 				E392425B238C75E0001B851D /* AppDelegate.swift in Sources */,
 				E39242EC2398C486001B851D /* GlobalFunctions.swift in Sources */,
 				E3924307239A5B60001B851D /* RecipesList.swift in Sources */,
 				E3924305239A5500001B851D /* RecipesListCellTableViewCell.swift in Sources */,
 				E39242C22392678B001B851D /* Model.xcdatamodeld in Sources */,
+				E3924318239ED643001B851D /* CoreDataManager.swift in Sources */,
+				E3924316239ED608001B851D /* CoreDataStack.swift in Sources */,
+				E3924313239E756E001B851D /* Different IngridientsVC.swift in Sources */,
 				E39242E723987B55001B851D /* Recipe.swift in Sources */,
 				E3924309239C8C40001B851D /* Show Recipe VC.swift in Sources */,
+				E392431A239ED673001B851D /* MOImage.swift in Sources */,
 				E39242E92398A563001B851D /* GlobalValues.swift in Sources */,
+				E392431C239F23EC001B851D /* ImageStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

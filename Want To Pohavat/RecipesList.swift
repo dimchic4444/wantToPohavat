@@ -10,11 +10,20 @@ import UIKit
 
 class RecipesList: UIViewController {
     let tableViewRecipes = UITableView()
+    var localListOfRecipes: [Recipe] = []
 
-
+     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, recipeList: [Recipe]) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.localListOfRecipes = recipeList
+        self.tabBarItem = UITabBarItem(title: "Рецепты", image: UIImage(named: "recipes"), selectedImage: UIImage(named: "recipes"))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let safeArea = view.safeAreaLayoutGuide
         view.backgroundColor = .white
         tableViewRecipes.frame = view.frame
         tableViewRecipes.delegate = self
@@ -34,7 +43,7 @@ extension RecipesList: UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ShowRecipeVC()
-        vc.initialRecipe(recipe: listOfRecipes[indexPath.row])
+        vc.initialRecipe(recipe: localListOfRecipes[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
         tableViewRecipes.deselectRow(at: indexPath, animated: true)
         
@@ -43,16 +52,16 @@ extension RecipesList: UITableViewDelegate
 
 extension RecipesList: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfRecipes.count
+        return localListOfRecipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipesListCellTableViewCell.reusedId, for: indexPath) as! RecipesListCellTableViewCell
-        let word = listOfRecipes[indexPath.row].nameOfRecipe
+        let word = localListOfRecipes[indexPath.row].nameOfRecipe
         cell.headerLabel.text = word
         var imageForCell: UIImage?
         concurrentQueue.async {
-            if let image = GlobalFunctions.loadImage(stringUrl: "\(imagesLink)\(listOfRecipes[indexPath.row].nameOfPicture)") {
+            if let image = GlobalFunctions.getImage(nameOfImage: "\(self.localListOfRecipes[indexPath.row].nameOfPicture)") {
                 imageForCell = image
             }
             if ((imageForCell) != nil) {
@@ -61,9 +70,9 @@ extension RecipesList: UITableViewDataSource {
                 }
             }
         }
-        cell.ccalsLabel.text = "\(listOfRecipes[indexPath.row].countCCalIn100Gram) ккал"
-        cell.portionsLabel.text = "\(listOfRecipes[indexPath.row].countOfPortion) порции"
-        cell.timeLabel.text = "\(listOfRecipes[indexPath.row].timeOfCooking) мин"
+        cell.ccalsLabel.text = "\(localListOfRecipes[indexPath.row].countCCalIn100Gram) ккал"
+        cell.portionsLabel.text = "\(localListOfRecipes[indexPath.row].countOfPortion) порции"
+        cell.timeLabel.text = "\(localListOfRecipes[indexPath.row].timeOfCooking) мин"
         
         
         

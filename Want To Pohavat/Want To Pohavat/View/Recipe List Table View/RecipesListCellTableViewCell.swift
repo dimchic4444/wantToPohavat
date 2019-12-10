@@ -66,6 +66,7 @@ class RecipesListCellTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func arrangeElementOnCell() {
+        //По непонятной мне причине contentView.wigth возвращает ширину такую как на айфоне 5s. 
         recipeImage.frame = CGRect(x: 5, y: 5, width: 160, height: 160)
         headerLabel.frame = CGRect(x: 175, y: 5, width: contentView.frame.width - 180, height: 80)
         ccalsLabel.frame = CGRect(x: 5, y: 170, width: contentView.frame.width/3 - 20, height: 20)

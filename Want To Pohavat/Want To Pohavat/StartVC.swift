@@ -122,17 +122,26 @@ class StartVC: UIViewController {
         let myGroup = DispatchGroup()
         myGroup.enter()
         if (GlobalFunctions.loadListOfRecipes()) {
-            let navVC = UINavigationController()
-            let vc = RecipesList()
-            navVC.viewControllers = [vc]
+            //Создаем вьюшки и настраиваем их
+            let navVCForAllRecipeList = UINavigationController()
+            let navVCForChooseIngridients = UINavigationController()
+            let allRecipesListVC = RecipesList(nibName: nil, bundle: nil, recipeList: listOfRecipes)
+            let choseIngridientsVC = DifferentIngridientsVC()
+            allRecipesListVC.modalPresentationStyle = .fullScreen
+            choseIngridientsVC.modalPresentationStyle = .fullScreen
+            navVCForAllRecipeList.viewControllers = [allRecipesListVC]
+            navVCForChooseIngridients.viewControllers = [choseIngridientsVC]
+            let tabBar = UITabBarController()
+            tabBar.viewControllers = [navVCForAllRecipeList, navVCForChooseIngridients]
+            tabBar.modalPresentationStyle = .fullScreen
             myGroup.leave()
             myGroup.notify(queue: DispatchQueue.main) {
                 UIView.animate(withDuration: 1, animations: {
                     self.animateView.frame.size = CGSize(width: 20.0 * self.animateView.frame.width, height: 20.0 * self.animateView.frame.height)
                     self.animateView.center = self.view.center
                 }) { (bool) in
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(navVC, animated: true)
+                    self.present(tabBar, animated: true)
+//                print(GlobalFunctions.getDifferentIngridients())
                 }
             }
         } else {

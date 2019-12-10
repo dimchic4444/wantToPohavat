@@ -58,7 +58,8 @@ class ShowRecipeVC: UIViewController {
             imageOfRecipe.clipsToBounds = true //Чтобы изображение не увеличивалось при маштабировпнии
             var imageForCell: UIImage?
             concurrentQueue.async {
-                if let image = GlobalFunctions.loadImage(stringUrl: "\(imagesLink)\(recipe.nameOfPicture)") {
+                if let image = GlobalFunctions.getImage(nameOfImage: "\(recipe.nameOfPicture)") { //Раньше использовалась loadImage
+                    print("image got")
                     imageForCell = image
                 }
                 if ((imageForCell) != nil) {
