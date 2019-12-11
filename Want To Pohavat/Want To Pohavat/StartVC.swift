@@ -11,9 +11,9 @@ import UIKit
 class StartVC: UIViewController {
     let animateView = UIView() //Вьюшка с анимацией
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        widthOfScreen = view.frame.width //Задаем ширину экрана для дальнейшего использованися в классе RecipeListCell
         
 //        var ingredients = [IngredientDTO]()
 //        ingredients.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Литр", nameOfIngredient: "Бульон"))
@@ -125,14 +125,18 @@ class StartVC: UIViewController {
             //Создаем вьюшки и настраиваем их
             let navVCForAllRecipeList = UINavigationController()
             let navVCForChooseIngridients = UINavigationController()
+            let navVCForChooseSubCategory = UINavigationController()
             let allRecipesListVC = RecipesList(nibName: nil, bundle: nil, recipeList: listOfRecipes)
             let choseIngridientsVC = DifferentIngridientsVC()
+            let chooseSubCategoryVC = DifferentSuBCategoriesVC()
             allRecipesListVC.modalPresentationStyle = .fullScreen
             choseIngridientsVC.modalPresentationStyle = .fullScreen
+            chooseSubCategoryVC.modalPresentationStyle = .fullScreen
             navVCForAllRecipeList.viewControllers = [allRecipesListVC]
             navVCForChooseIngridients.viewControllers = [choseIngridientsVC]
+            navVCForChooseSubCategory.viewControllers = [chooseSubCategoryVC]
             let tabBar = UITabBarController()
-            tabBar.viewControllers = [navVCForAllRecipeList, navVCForChooseIngridients]
+            tabBar.viewControllers = [navVCForAllRecipeList, navVCForChooseIngridients, navVCForChooseSubCategory]
             tabBar.modalPresentationStyle = .fullScreen
             tabBar.modalTransitionStyle = .crossDissolve
             myGroup.leave()

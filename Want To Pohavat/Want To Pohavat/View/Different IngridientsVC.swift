@@ -30,7 +30,7 @@ class DifferentIngridientsVC: UIViewController {
         tableViewIngridients.allowsMultipleSelection = true
         tableViewIngridients.delegate = self
         tableViewIngridients.dataSource = self
-        self.title = "Выберите ингридиенты"
+        self.title = "Ингридиенты"
         view.addSubview(tableViewIngridients)
         tableViewIngridients.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         //Добавление кнопки переходна к списке рецептов

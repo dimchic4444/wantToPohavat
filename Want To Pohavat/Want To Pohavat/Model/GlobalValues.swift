@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
+public var widthOfScreen: CGFloat? //Костыль. Во viewDidLoad задаем значение ширины экрана, потому что из класса RecipeListCell я не могу получить доступ к свойству view.frame.width, а свойство contentView.frame.width возвращает ширину ячейки всегда одинаковую, равную ширине экрана айфона 5.
 
 let apiKey = "AIzaSyBP3Nis_VTkIv_rgavtwYj3RC7LbHutLVA"
 var recipesDataBaseLink: String {

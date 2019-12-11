@@ -133,6 +133,19 @@ class GlobalFunctions {
         }
         return subCategories
     }
+    
+    static func getRecipesFromChosedCategory(subCategory: String) -> [Recipe] {
+        var recipes: [Recipe] = []
+        
+        for i in listOfRecipes {
+            if (i.nameOfSubCategory == subCategory) {
+                recipes.append(i)
+            }
+        }
+        
+        return recipes
+    }
+    
     static func getDifferentIngridients() -> [String] {//Функция возвращает список всех ингридиентов найденых в рецептах
         var differentIngridients: [String] = []
         for i in listOfRecipes {

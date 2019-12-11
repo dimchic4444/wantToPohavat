@@ -69,12 +69,16 @@ class RecipesListCellTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func arrangeElementOnCell() {
-        //По непонятной мне причине contentView.wigth возвращает ширину такую как на айфоне 5s. 
+        //По непонятной мне причине contentView.wigth возвращает ширину такую как на айфоне 5s.
+        var widthOfCell = contentView.frame.width
+        if let width = widthOfScreen {
+            widthOfCell = width
+        }
         recipeImage.frame = CGRect(x: 5, y: 5, width: 160, height: 160)
-        headerLabel.frame = CGRect(x: 175, y: 5, width: contentView.frame.width - 180, height: 80)
-        ccalsLabel.frame = CGRect(x: 5, y: 170, width: contentView.frame.width/3 - 20, height: 20)
-        timeLabel.frame = CGRect(x: contentView.frame.width/3 - 10, y: 170, width: contentView.frame.width/3 - 20, height: 20)
-        portionsLabel.frame = CGRect(x: contentView.frame.width/3*2 + 15, y: 170, width: contentView.frame.width/3 - 20, height: 20)
+        headerLabel.frame = CGRect(x: 175, y: 5, width: widthOfCell - 180, height: 80)
+        ccalsLabel.frame = CGRect(x: 5, y: 170, width: widthOfCell/3 - 20, height: 20)
+        timeLabel.frame = CGRect(x: widthOfCell/3 - 10, y: 170, width: widthOfCell/3 - 20, height: 20)
+        portionsLabel.frame = CGRect(x: widthOfCell/3*2 + 15, y: 170, width: widthOfCell/3 - 20, height: 20)
         
     }
     
