@@ -23,7 +23,7 @@ class GlobalFunctions {
                 }
             }
         } else {
-            if ((webVersionOfDataBase < localVersionOfDataBase) || localVersionOfDataBase == -1) {
+            if ((webVersionOfDataBase > localVersionOfDataBase) || localVersionOfDataBase == -1) {
                 //                    на устройстве хранится устаревшая версия базы данных, либо отсутствует
                 if webVersionOfDataBase != -1 {
                     
