@@ -22,7 +22,7 @@ class StartVC: UIViewController {
 //        ingredients.append(IngredientDTO(isCalculating: true, countOf: 2, nameOfMeasure: "Чайная ложка", nameOfIngredient: "Лимонный сок"))
 //        ingredients.append(IngredientDTO(isCalculating: true, countOf: 0.33, nameOfMeasure: "Чайная ложка", nameOfIngredient: "Молотый перец"))
 //        ingredients.append(IngredientDTO(isCalculating: true, countOf: 5, nameOfMeasure: "Столовая ложка", nameOfIngredient: "Растительные сливки"))
-//         ingredients.append(IngredientDTO(isCalculating: true, countOf: 0.5, nameOfMeasure: "Пучок", nameOfIngredient: "Укропа"))
+//         ingredients.append(IngredientDTO(isCalculating: true, countOf: 0.5, nameOfMeasure: "Пучок", nameOfIngredient: "Укроп"))
 //
 //        var struc = RecipeDTO(nameOfRecipe: "Свекольный суп с картофелем и укропом", ingredients: ingredients, instruction: ["Срезать ботву со свёклы, промыть ее и очистить корнеплод. Листья порубить вместе со стеблями, свёклу тонко нарезать", "Промыть картофель, нарезать и обжарить в течение 5-7 минут в сковороде с маслом. Залить бульоном и довести до кипения", "Готовить минут 8 до мягкости картофеля, затем добавить свёклу и ботву. Готовить еще 1-2 минуты. Приправить солью с перцем при необходимости", "Добавить сок лимона и сливки. Перемешать и добавить порубленный укроп. Подавать"], timeOfCooking: 20, countOfPortion: 4, countCCalIn100Gram: 32, nameOfCategory: "Веган", nameOfSubCategory: "Супы", nameOfPicture: "image1.jpg")
 //
@@ -66,17 +66,80 @@ class StartVC: UIViewController {
 //        ingredients3.append(IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Оливковое масло"))
 //        ingredients3.append(IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Овощной бульон"))
 //        ingredients3.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Чайная ложка", nameOfIngredient: "Майоран"))
-//        ingredients3.append(IngredientDTO(isCalculating: true, countOf: 0.5, nameOfMeasure: "Чашка", nameOfIngredient: "белая фасоль"))
+//        ingredients3.append(IngredientDTO(isCalculating: true, countOf: 0.5, nameOfMeasure: "Чашка", nameOfIngredient: "Белая фасоль"))
 //        ingredients3.append(IngredientDTO(isCalculating: true, countOf: 200, nameOfMeasure: "Миллилитр", nameOfIngredient: "Растительные сливки"))
 //        ingredients3.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Штук", nameOfIngredient: "Цедра лимона"))
 //        ingredients3.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Штук", nameOfIngredient: "Сок лимона"))
 //        ingredients3.append(IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Соль"))
 //        ingredients3.append(IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Перец"))
 //
-//        var struc3 = RecipeDTO(nameOfRecipe: "Крем суп из цветной капусты с лимоном", ingredients: ingredients3, instruction: [" Нарезать капусту и лук. Обжарить лук в течение пары минут в оливковом масле, добавить капусту и чеснок, немного потушить и залить бульоном. Довести до кипения и варить до мягкости капусты", "Добавить фасоль и майоран, тушить пару минут", "Пюрировать суп и добавить сливки, цедру и сок лимона по вкусу. Перемешать и приправить по вкусу"], timeOfCooking: 25, countOfPortion: 4, countCCalIn100Gram: 51, nameOfCategory: "Веган", nameOfSubCategory: "Супы", nameOfPicture: "image4.jpg")
+//        var struc3 = RecipeDTO(nameOfRecipe: "Крем суп из цветной капусты с лимоном", ingredients: ingredients3, instruction: ["Нарезать капусту и лук. Обжарить лук в течение пары минут в оливковом масле, добавить капусту и чеснок, немного потушить и залить бульоном. Довести до кипения и варить до мягкости капусты", "Добавить фасоль и майоран, тушить пару минут", "Пюрировать суп и добавить сливки, цедру и сок лимона по вкусу. Перемешать и приправить по вкусу"], timeOfCooking: 25, countOfPortion: 4, countCCalIn100Gram: 51, nameOfCategory: "Веган", nameOfSubCategory: "Супы", nameOfPicture: "image4.jpg")
+//
+//        var ingredients4 = [IngredientDTO]()
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 270, nameOfMeasure: "Грамм", nameOfIngredient: "Копченый тофу"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 2, nameOfMeasure: "Столовая ложка", nameOfIngredient: "Растительное масло"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Штук", nameOfIngredient: "Репчатый лук"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Штук", nameOfIngredient: "Зубчик чеснока"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 6, nameOfMeasure: "Штук", nameOfIngredient: "Картофель"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 4, nameOfMeasure: "Штук", nameOfIngredient: "Морковь"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Литр", nameOfIngredient: "Вода"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 2, nameOfMeasure: "Штук", nameOfIngredient: "Бульонный кубик"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 4, nameOfMeasure: "Штук", nameOfIngredient: "Горошина перца"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Чайная ложка", nameOfIngredient: "Сушеный укроп"))
+//        ingredients4.append(IngredientDTO(isCalculating: true, countOf: 200, nameOfMeasure: "Миллилитр", nameOfIngredient: "Растительные сливки"))
+//        ingredients4.append(IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Свежий укроп"))
+//
+//        var struc4 = RecipeDTO(nameOfRecipe: "Суп с тофу", ingredients: ingredients4, instruction: ["Нарезать тофу, лук, чеснок, картофель и морковь", "Разогреть 1 столовую ложку масла в сотейнике, добавить лук с чесноком и жарить минуту", "Добавить картофель, воду, кубики, специи и укроп. Варить пару минут и добавить морковь. Продолжать готовить до мягкости овощей", "Разогреть масло в сковороде и обжарить тофу до золотистости", "Добавить в суп тофу и сливки и подавать с укропом"], timeOfCooking: 50, countOfPortion: 4, countCCalIn100Gram: 57, nameOfCategory: "Веган", nameOfSubCategory: "Супы", nameOfPicture: "image5.jpg")
+//
+//        var ingredients5 = [IngredientDTO]()
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 3, nameOfMeasure: "Чашка", nameOfIngredient: "Мускатная тыква"))
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Чашка", nameOfIngredient: "Нарезанный лук"))
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 1.5, nameOfMeasure: "Чашка", nameOfIngredient: "Нутовая мука"))
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 0.5, nameOfMeasure: "Столовая ложка", nameOfIngredient: "Измельченный чеснок"))
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Чайная ложка", nameOfIngredient: "Лимонный сок"))
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 3, nameOfMeasure: "Столовая ложка", nameOfIngredient: "Петрушка"))
+//        ingredients5.append(IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Масло для жарки"))
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Чайная ложка", nameOfIngredient: "Молотый тмин"))
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 0.25, nameOfMeasure: "Чайная ложка", nameOfIngredient: "Молотая куркума"))
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 0.5, nameOfMeasure: "Чайная ложка", nameOfIngredient: "Кайенский перец"))
+//        ingredients5.append(IngredientDTO(isCalculating: true, countOf: 0.5, nameOfMeasure: "Чайная ложка", nameOfIngredient: "Соль"))
+//
+//        var struc5 = RecipeDTO(nameOfRecipe: "Котлеты из нута и тыквы", ingredients: ingredients5, instruction: ["В большой миске смешать тертую тыкву, лук, нутовую муку, специи, лимонный сок и петрушку. Перемешать вилкой", "Смазать маслом сковороду", "Сформировать котлеты и выложить на сковороду. Обжаривать 3-4 минуты, перевернуть и готовить еще минуты 2-3", "Снять с огня и переложить на бумажные полотенца", "Посыпать петрушкой и подавать"], timeOfCooking: 30, countOfPortion: 5, countCCalIn100Gram: 194, nameOfCategory: "Веган", nameOfSubCategory: "Вторые блюда", nameOfPicture: "image6.jpg")
+//
+//        var ingredients6 = [IngredientDTO]()
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Штук", nameOfIngredient: "Репчатый лук"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: true, countOf: 0.5, nameOfMeasure: "Штук", nameOfIngredient: "Красный болгарский перец"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Чашка", nameOfIngredient: "Картофель"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: true, countOf: 0.5, nameOfMeasure: "Чашка", nameOfIngredient: "Красная чечевица"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: true, countOf: 1.5, nameOfMeasure: "Чашка", nameOfIngredient: "Вода"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Штук", nameOfIngredient: "Лавровый лист"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Щепотка", nameOfIngredient: "Молотый кумин"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: true, countOf: 1, nameOfMeasure: "Щепотка", nameOfIngredient: "Петрушка"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: true, countOf: 3, nameOfMeasure: "Столовая ложка", nameOfIngredient: "Томатная паста"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Лимонный сок"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Растительное масло"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Соль"))
+//        ingredients6.append(
+//            IngredientDTO(isCalculating: false, countOf: 1, nameOfMeasure: "По вкусу", nameOfIngredient: "Перец"))
 //
 //
-//        var arrayOfRecipes = RecipeDTOResponse(items: [struc, struc1, struc2, struc3])
+//        var struc6 = RecipeDTO(nameOfRecipe: "Рагу с картофелем и чечевицей", ingredients: ingredients6, instruction: ["Нарезать лук и обжарить в сотейнике до полупрозрачности", "Добавить картофель к луку, затем перец, чечевицу, воду, томатную пасту, кумин и лавровый лист. Перемешать и тушить минут 20 под крышкой на слабом огне", "Удалить лавровый лист, добавить петрушку и немного лимонного сока. Подавать"], timeOfCooking: 30, countOfPortion: 2, countCCalIn100Gram: 109, nameOfCategory: "Веган", nameOfSubCategory: "Вторые блюда", nameOfPicture: "image7.jpg")
+//
+//
+//
+//        var arrayOfRecipes = RecipeDTOResponse(items: [struc, struc1, struc2, struc3, struc4, struc5, struc6])
 //        let encodedData = try? JSONEncoder().encode(arrayOfRecipes)
 //         print(String(data: encodedData!, encoding: .utf8)!)
 
